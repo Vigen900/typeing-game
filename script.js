@@ -22,7 +22,7 @@ function pressKey(char) {
     setTimeout(function () {
         key.removeAttribute('data-pressed');
     }, 200);
-    console.log(char)
+    // console.log(char)
 }
 
 var h1 = document.querySelector('h1');
@@ -54,6 +54,17 @@ document.body.addEventListener('keydown', function (e) {
 function checkInCorrect(char) {
    const letters = document.querySelector('h2 span')
    //vercnel text area arjeqy u hamapatasxan indexov hamematel letters het//
+    setTimeout(function(){
+        const enteredValue =  document.getElementById("user-input").value
+        const allLetters = document.querySelectorAll('h2 span')
+        const lastLetter = allLetters[enteredValue.length - 1]
+        console.log(lastLetter.innerHTML)
+        if (lastLetter.innerHTML == enteredValue[enteredValue.length - 1] ){
+            lastLetter.classList.add('correct')
+            lastLetter.classList.remove('incorrect')
+        }
+        else lastLetter.classList.add('incorrect')
+    },0)
 }
 document.body.addEventListener('keyup', function (e) {
     var key = getKey(e);
@@ -63,7 +74,7 @@ document.body.addEventListener('keyup', function (e) {
 function size() {
     var size = keyboard.parentNode.clientWidth / 90;
     keyboard.style.fontSize = size + 'px';
-    console.log(size);
+    // console.log(size);
 }
 
 var keyboard = document.querySelector('.keyboard');
