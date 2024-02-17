@@ -49,22 +49,21 @@ document.body.addEventListener('keydown', function (e) {
     }
 
     key.setAttribute('data-pressed', 'on');
-    checkInCorrect(key.getAttribute('data-char'))
+    checkInCorrect()
 });
-function checkInCorrect(char) {
-   const letters = document.querySelector('h2 span')
-   //vercnel text area arjeqy u hamapatasxan indexov hamematel letters het//
-    setTimeout(function(){
-        const enteredValue =  document.getElementById("user-input").value
+function checkInCorrect() {
+    setTimeout(function () {
+        const enteredValue = document.getElementById("user-input").value
         const allLetters = document.querySelectorAll('h2 span')
         const lastLetter = allLetters[enteredValue.length - 1]
-        console.log(lastLetter.innerHTML)
-        if (lastLetter.innerHTML == enteredValue[enteredValue.length - 1] ){
+        if (lastLetter.innerHTML == enteredValue[enteredValue.length - 1]) {
             lastLetter.classList.add('correct')
             lastLetter.classList.remove('incorrect')
         }
-        else lastLetter.classList.add('incorrect')
-    },0)
+        else {
+            lastLetter.classList.add('incorrect')
+        }
+    }, 0)
 }
 document.body.addEventListener('keyup', function (e) {
     var key = getKey(e);
