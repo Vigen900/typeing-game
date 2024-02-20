@@ -1,3 +1,16 @@
+class Timer {
+    constructor() {
+       this.timer = []
+       this.timePassed = 0
+    }
+    startTimer() {
+       this.timer = setInterval(()=> {
+          this.timePassed += 1
+          timerDiv.innerHTML = this.timePassed
+       }, 1000)
+    }
+}
+
 function getKey(e) {
     var location = e.location;
     var selector;
@@ -22,12 +35,25 @@ function pressKey(char) {
     setTimeout(function () {
         key.removeAttribute('data-pressed');
     }, 200);
-    // console.log(char)
 }
 
-var h1 = document.querySelector('h1');
-var originalQueue = h1.innerHTML;
-var queue = h1.innerHTML;
+function checkIsCorrect() {
+    const allLetters = document.querySelectorAll('h2 span')
+    const enteredValue = document.getElementById("user-input").value
+    const lastLetter = allLetters[enteredValue.length - 1]
+
+    progress.innerHTML = enteredValue.length;
+
+    if (!lastLetter) {
+        return;
+    }
+    if (lastLetter.innerHTML == enteredValue[enteredValue.length - 1]) {
+        lastLetter.classList.add('correct')
+        lastLetter.classList.remove('incorrect')
+    } else {
+        lastLetter.classList.add('incorrect')
+    }
+}
 
 function next() {
     var c = queue[0];
@@ -39,42 +65,21 @@ function next() {
     }
 }
 
-h1.innerHTML = "&nbsp;";
-setTimeout(next, 500);
-
-document.body.addEventListener('keydown', function (e) {
-    var key = getKey(e);
-    if (!key) {
-        return console.warn('No key for', e.keyCode);
-    }
-
-    key.setAttribute('data-pressed', 'on');
-    checkInCorrect()
-});
-function checkInCorrect() {
-    setTimeout(function () {
-        const enteredValue = document.getElementById("user-input").value
-        const allLetters = document.querySelectorAll('h2 span')
-        const lastLetter = allLetters[enteredValue.length - 1]
-        if (lastLetter.innerHTML == enteredValue[enteredValue.length - 1]) {
-            lastLetter.classList.add('correct')
-            lastLetter.classList.remove('incorrect')
-        }
-        else {
-            lastLetter.classList.add('incorrect')
-        }
-    }, 0)
-}
-document.body.addEventListener('keyup', function (e) {
-    var key = getKey(e);
-    key && key.removeAttribute('data-pressed');
-});
-
 function size() {
     var size = keyboard.parentNode.clientWidth / 90;
     keyboard.style.fontSize = size + 'px';
-    // console.log(size);
 }
+
+function showAlert() {
+    alert('Please use your physical keyboard to learn how to type fast');
+}
+
+var h1 = document.querySelector('h1');
+var originalQueue = h1.innerHTML;
+var queue = h1.innerHTML;
+
+h1.innerHTML = "&nbsp;";
+setTimeout(next, 500);
 
 var keyboard = document.querySelector('.keyboard');
 window.addEventListener('resize', function (e) {
@@ -85,7 +90,26 @@ size();
 const h2 = document.querySelector('h2')
 const h2content = h2.innerHTML
 let h2newContent = ''
+
 for (let i = 0; i < h2content.length; i++) {
     h2newContent += `<span>${h2content[i]}</span>`
 }
 h2.innerHTML = h2newContent
+
+const mtTimer = new Timer();
+mtTimer.startTimer();
+
+document.body.addEventListener('keydown', function (e) {
+    var key = getKey(e);
+    if (!key) {
+        return console.warn('No key for', e.keyCode);
+    }
+
+    key.setAttribute('data-pressed', 'on');
+});
+
+document.body.addEventListener('keyup', function (e) {
+    var key = getKey(e);
+    key && key.removeAttribute('data-pressed');
+    checkIsCorrect()
+});
