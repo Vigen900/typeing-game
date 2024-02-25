@@ -5,19 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <div id=timerDiv class="timer">
-        0
-     </div>
-     <div id="progress">
-        0
+    <div class="timer-div">
+        <i class="fa-regular fa-clock"></i>
+        <div id=timerDiv class="timer">
+            0
+         </div>
+    </div>
+     <div class="progres-div">
+        <i class="fa-solid fa-font"></i>
+        <div id="progress">
+           0
+        </div>
      </div>
     <h1>Typing game</h1>
-    <h2>Astronomers believe that the impact of asteroids crashing into our planet may have helped deliver water and other elements to early Earth
-    </h2>
+    <h2></h2>
     <textarea name="text" id="user-input" cols="30" rows="10"></textarea>
     <div class="keyboard" onclick="showAlert()">
         <div class="keyboard__row keyboard__row--h1">

@@ -1,3 +1,24 @@
+const textes = [
+    'Astronomers believe',
+    'The title of the album was announced in May 2016',
+    'Recording for the album took place between 2016 and 2018',
+    'The cover was shot by American photographer David LaChapelle',
+    'Astroworld was met with widespread critical acclaim',
+    'Astroworld is not without filler'
+]
+function showRandomText(){
+    var item = textes[Math.floor(Math.random()*textes.length)];
+    document.querySelector('h2').innerHTML = item;
+    const h2 = document.querySelector('h2')
+    const h2content = h2.innerHTML
+    let h2newContent = ''
+
+    for (let i = 0; i < h2content.length; i++) {
+        h2newContent += `<span>${h2content[i]}</span>`
+    }
+    h2.innerHTML = h2newContent
+}
+
 class Timer {
     constructor() {
        this.timer = []
@@ -10,6 +31,10 @@ class Timer {
        }, 1000)
     }
 }
+showRandomText()
+const mtTimer = new Timer();
+mtTimer.startTimer();
+
 
 function getKey(e) {
     var location = e.location;
@@ -53,6 +78,12 @@ function checkIsCorrect() {
     } else {
         lastLetter.classList.add('incorrect')
     }
+    setTimeout(()=>{
+        if (enteredValue.length == allLetters.length){
+            alert (`Game over: ${enteredValue.length} letters in ${mtTimer.timePassed} seconds `)
+            window.location.reload()
+        }
+    },100)
 }
 
 function next() {
@@ -87,17 +118,6 @@ window.addEventListener('resize', function (e) {
 });
 size();
 
-const h2 = document.querySelector('h2')
-const h2content = h2.innerHTML
-let h2newContent = ''
-
-for (let i = 0; i < h2content.length; i++) {
-    h2newContent += `<span>${h2content[i]}</span>`
-}
-h2.innerHTML = h2newContent
-
-const mtTimer = new Timer();
-mtTimer.startTimer();
 
 document.body.addEventListener('keydown', function (e) {
     var key = getKey(e);

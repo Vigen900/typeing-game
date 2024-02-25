@@ -6,7 +6,17 @@ h1 {
   }
   .timer{
     font-size: large;
-    margin-left: 200px;
+  }
+  .timer-div{
+    display: flex;
+    padding-left: 150px;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  .progres-div{
+    display: flex;
+    padding-left: 150px;
+    gap: 30px;
   }
   h2{
     width: 50%;
