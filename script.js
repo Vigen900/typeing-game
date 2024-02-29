@@ -66,7 +66,7 @@ function checkIsCorrect() {
     const allLetters = document.querySelectorAll('h2 span')
     const enteredValue = document.getElementById("user-input").value
     const lastLetter = allLetters[enteredValue.length - 1]
-
+    
     progress.innerHTML = enteredValue.length;
 
     if (!lastLetter) {

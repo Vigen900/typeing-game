@@ -164,3 +164,16 @@ h1 {
   .incorrect{
     color: red;
   }
+
+  @media (max-width: 640px) {
+    h2, textarea{
+        width: 90%;
+    }
+    h1{
+        font-size: 15px;
+        text-decoration: underline;
+    }
+    .keyboard{
+        font-size: 6.6px !important;
+    }
+  }
