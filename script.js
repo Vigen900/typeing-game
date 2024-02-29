@@ -80,7 +80,8 @@ function checkIsCorrect() {
     }
     setTimeout(()=>{
         if (enteredValue.length == allLetters.length){
-            alert (`Game over: ${enteredValue.length} letters in ${mtTimer.timePassed} seconds `)
+            const mistakes = (document.querySelectorAll('.incorrect').length)
+            alert (`Game over: ${enteredValue.length} letters in ${mtTimer.timePassed} seconds, ${mistakes} mistakes `)
             window.location.reload()
         }
     },100)
